@@ -114,7 +114,7 @@ func (o Options) ApplyDefaults() Options {
 		// two is a sweet spot for almost all situations. We've done some
 		// experiments documented here:
 		// https://github.com/borgbackup/borg/issues/3500
-		o.FileReadConcurrency = 2
+		o.FileReadConcurrency = 1
 	}
 
 	if o.SaveBlobConcurrency == 0 {

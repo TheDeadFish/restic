@@ -656,7 +656,10 @@ func runBackup(opts BackupOptions, gopts GlobalOptions, term *termstatus.Termina
 	if !gopts.JSON {
 		progressPrinter.V("start scan on %v", targets)
 	}
-	t.Go(func() error { return sc.Scan(t.Context(gopts.ctx), targets) })
+	scan_err := sc.Scan(t.Context(gopts.ctx), targets)
+	if err != nil {
+		return scan_err
+	}
 
 	arch := archiver.New(repo, targetFS, archiver.Options{})
 	arch.SelectByName = selectByNameFilter
